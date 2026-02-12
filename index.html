@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <title>Cloud Ware - Cybersecurity Platform</title>
+  <meta name="description" content="Advanced cybersecurity platform for file analysis and malware detection." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            background: '#000000',
+            foreground: '#ebebeb',
+            card: '#0a0a0a',
+            'card-foreground': '#ebebeb',
+            primary: '#ffffff',
+            'primary-foreground': '#000000',
+            secondary: '#141414',
+            'secondary-foreground': '#ebebeb',
+            muted: '#141414',
+            'muted-foreground': '#8c8c8c',
+            accent: '#1f1f1f',
+            'accent-foreground': '#ebebeb',
+            border: '#262626',
+          },
+          borderRadius: {
+            xl: '0.75rem',
+            lg: '0.5rem',
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="min-h-screen bg-background">
+
+    <!-- ============ NAVBAR ============ -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-xl" style="border-color: rgba(38,38,38,0.4);">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 no-underline">
+          <i data-lucide="shield" class="w-6 h-6 text-foreground" style="stroke-width:1.5;"></i>
+          <span class="text-lg font-bold tracking-tight text-foreground">Cloud Ware</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <ul class="hidden md:flex items-center gap-8 list-none m-0 p-0">
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Produto</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Recursos</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Docs</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Contato</a></li>
+        </ul>
+
+        <!-- Sign In -->
+        <div class="hidden md:block">
+          <a href="#" class="rounded-lg border bg-primary px-5 py-2 text-sm font-medium text-primary-foreground no-underline transition-all hover:opacity-90" style="border-color: rgba(38,38,38,0.6);">Sign In</a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button id="mobileToggle" type="button" class="text-foreground md:hidden bg-transparent border-none cursor-pointer p-0" aria-label="Abrir menu">
+          <i data-lucide="menu" class="w-6 h-6" id="menuIcon"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu md:hidden border-t bg-background/95 backdrop-blur-xl px-6" style="border-color: rgba(38,38,38,0.4);">
+        <ul class="flex flex-col gap-4 list-none m-0 p-0 py-6">
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Produto</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Recursos</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Docs</a></li>
+          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Contato</a></li>
+          <li><a href="#" class="inline-block rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground no-underline transition-all hover:opacity-90">Sign In</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ HERO SECTION ============ -->
+      <section class="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20">
+
+        <!-- Cloud Watermark -->
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden cloud-watermark">
+          <i data-lucide="cloud" class="w-[420px] h-[420px] md:w-[600px] md:h-[600px] text-foreground" style="stroke-width:0.5;"></i>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex w-full max-w-2xl flex-col items-center gap-8">
+
+          <!-- Badge -->
+          <div class="flex items-center gap-2 rounded-full border px-4 py-1.5 bg-secondary" style="border-color: rgba(38,38,38,0.5);">
+            <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+            <span class="text-xs font-medium text-muted-foreground">Sistema operacional</span>
+          </div>
+
+          <!-- Heading -->
+          <h1 class="text-balance text-center text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground">
+            O que você deseja verificar hoje?
+          </h1>
+
+          <p class="max-w-md text-center text-base leading-relaxed text-muted-foreground">
+            Envie qualquer arquivo para análise avançada de ameaças. Detecção de malware em segundos com inteligência artificial.
+          </p>
+
+          <!-- Upload Area -->
+          <div id="uploadArea" class="upload-area group relative w-full cursor-pointer rounded-xl border bg-card transition-all" style="border-color: rgba(38,38,38,0.5);">
+            <label id="uploadLabel" class="flex cursor-pointer flex-col items-center gap-4 px-6 py-10 md:py-12">
+              <input type="file" class="sr-only" id="fileInput" aria-label="Upload de arquivo para análise" />
+
+              <div id="uploadIconBox" class="flex h-14 w-14 items-center justify-center rounded-xl border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="upload" class="w-6 h-6 text-muted-foreground" style="stroke-width:1.5;" id="uploadIcon"></i>
+              </div>
+
+              <div class="flex flex-col items-center gap-1" id="uploadText">
+                <p class="text-sm font-medium text-foreground m-0">Arraste um arquivo ou clique para selecionar</p>
+                <p class="text-xs text-muted-foreground m-0">Suporta .exe, .dll, .pdf, .doc e outros formatos</p>
+              </div>
+            </label>
+
+            <!-- Submit Button -->
+            <div class="border-t px-6 py-4" style="border-color: rgba(38,38,38,0.3);">
+              <button id="submitBtn" type="button" class="btn-submit flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 border-none cursor-pointer font-[inherit]">
+                Enviar para análise
+                <i data-lucide="arrow-right" class="w-4 h-4" style="stroke-width:2;"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ MALWARE CARDS ============ -->
+      <section class="mx-auto w-full max-w-7xl px-6 py-24">
+
+        <!-- Section Header -->
+        <div class="mb-12 flex flex-col items-center gap-3">
+          <h2 class="text-balance text-center text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+            Ameaças que detectamos
+          </h2>
+          <p class="max-w-lg text-center text-sm leading-relaxed text-muted-foreground">
+            Nossa plataforma identifica e classifica os principais tipos de malware em tempo real.
+          </p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="threatGrid">
+
+          <!-- Trojan -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="bug" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Trojan</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Disfarça-se como software legítimo para obter acesso não autorizado ao sistema do usuário.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Spyware -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="eye" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Spyware</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Monitora secretamente a atividade do usuário e coleta informações pessoais sem consentimento.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Ransomware -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="lock" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Ransomware</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Criptografa os dados da vítima e exige pagamento em troca da chave de descriptografia.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rootkit -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="skull" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Rootkit</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Esconde-se profundamente no sistema operacional para manter o acesso privilegiado de forma persistente.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Worm -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="wifi" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Worm</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Se auto-replica e se espalha automaticamente pela rede sem necessidade de interação do usuário.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Adware -->
+          <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
+            <div class="flex flex-col gap-4">
+              <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
+                <i data-lucide="triangle-alert" class="card-icon w-5 h-5 text-muted-foreground transition-colors" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <h3 class="text-sm font-semibold text-foreground m-0">Adware</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground m-0">Exibe anúncios indesejados e pode redirecionar pesquisas para sites maliciosos.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="border-t" style="border-color: rgba(38,38,38,0.3);">
+      <div class="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-8 md:flex-row md:justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield" class="w-4 h-4 text-muted-foreground" style="stroke-width:1.5;"></i>
+          <span class="text-xs text-muted-foreground">Cloud Ware &mdash; Cybersecurity Platform</span>
+        </div>
+        <p class="text-xs text-muted-foreground m-0" id="copyright"></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
