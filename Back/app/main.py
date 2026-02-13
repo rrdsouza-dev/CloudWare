@@ -20,3 +20,5 @@ RESULTS_DIR = "results"
 
 os.makedirs(UPLOAD_DIR, exist_ok =True)   #cria uma se não existir
 os.makedirs(RESULTS_DIR, exist_ok=True)   #
+
+#Fim da main.py
