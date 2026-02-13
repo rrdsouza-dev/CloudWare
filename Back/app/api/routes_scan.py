@@ -45,3 +45,4 @@ async def scan_file(file: UploadFile = File(...)):
         json.dump(result, f)
 
     return JSONResponse(content=result)
+    
