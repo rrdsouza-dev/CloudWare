@@ -1,48 +1,74 @@
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
-import os, uuid, json, hashlib
+import os
+import uuid
 
 router = APIRouter()
 
-# Extensões permitidas
 ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg", ".txt", ".docx"}
+MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
 
-# Tamanho máximo (10MB)
-MAX_FILE_SIZE = 10 * 1024 * 1024
-
-# Pastas obrigatórias
 UPLOAD_DIR = "uploads"
-RESULTS_DIR = "results"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-os.makedirs(RESULTS_DIR, exist_ok=True)
+
 
 @router.post("/scan")
 async def scan_file(file: UploadFile = File(...)):
-    file_id = str(uuid.uuid4())
-    file_location = f"{UPLOAD_DIR}/{file_id}_{file.filename}"
-    
-    contents = await file.read()
-    if len(contents) > MAX_FILE_SIZE:
-        return JSONResponse(status_code=413, content={"error": "Arquivo muito grande (máx 10MB)"})
 
-    ext = os.path.splitext(file.filename.lower())[1]
+    # ---------- validar extensão ----------
+    filename = file.filename.lower()
+    ext = os.path.splitext(filename)[1]
+
     if ext not in ALLOWED_EXTENSIONS:
-        return JSONResponse(status_code=400, content={"error": "Tipo de arquivo não permitido"})
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Tipo de arquivo não permitido"}
+        )
 
-    # Salva o arquivo
-    with open(file_location, "wb") as buffer:
-        buffer.write(contents)
+    # ---------- gerar nome seguro ----------
+    safe_filename = f"{uuid.uuid4()}{ext}"
+    file_path = os.path.join(UPLOAD_DIR, safe_filename)
 
+    # ---------- salvar em streaming ----------
+    current_size = 0
+
+    try:
+        with open(file_path, "wb") as buffer:
+
+            while True:
+                chunk = await file.read(1024 * 1024)  # lê 1MB por vez
+
+                if not chunk:
+                    break  # upload terminou
+
+                current_size += len(chunk)
+
+                if current_size > MAX_FILE_SIZE:
+                    buffer.close()
+                    os.remove(file_path)
+                    return JSONResponse(
+                        status_code=413,
+                        content={"error": "Arquivo muito grande (máx 10MB)"}
+                    )
+
+                buffer.write(chunk)
+
+    except Exception as e:
+        # se qualquer erro acontecer durante upload
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Falha ao salvar o arquivo"}
+        )
+
+    # ---------- resposta simulada ----------
     result = {
-        "scan_id": file_id,
+        "scan_id": str(uuid.uuid4()),
         "filename": file.filename,
         "infected": False,
         "risk_level": "low"
     }
 
-    result_file = f"{RESULTS_DIR}/{file_id}.json"
-    with open(result_file, "w") as f:
-        json.dump(result, f)
-
     return JSONResponse(content=result)
-    
