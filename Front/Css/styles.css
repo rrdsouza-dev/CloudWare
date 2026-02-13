@@ -60,7 +60,7 @@ body {
 
 /* Cloud watermark */
 .cloud-watermark {
-  opacity: 0.02;
+  opacity: 0.04;
 }
 
 /* Screen reader only */
@@ -74,4 +74,107 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ---- PROCESSING OVERLAY ---- */
+.processing-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.processing-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Cloud float */
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.cloud-float {
+  animation: cloudFloat 2.4s ease-in-out infinite;
+}
+
+/* Wind streaks */
+@keyframes windStreak1 {
+  0% { opacity: 0; transform: translateX(-30px); }
+  30% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(50px); }
+}
+@keyframes windStreak2 {
+  0% { opacity: 0; transform: translateX(-20px); }
+  35% { opacity: 0.45; }
+  100% { opacity: 0; transform: translateX(60px); }
+}
+@keyframes windStreak3 {
+  0% { opacity: 0; transform: translateX(-25px); }
+  25% { opacity: 0.35; }
+  100% { opacity: 0; transform: translateX(55px); }
+}
+.wind-streak-1 {
+  animation: windStreak1 1.8s ease-in-out infinite;
+}
+.wind-streak-2 {
+  animation: windStreak2 2.2s ease-in-out infinite 0.4s;
+}
+.wind-streak-3 {
+  animation: windStreak3 2s ease-in-out infinite 0.8s;
+}
+
+/* Scanning dots */
+@keyframes scanDots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+.scan-dots::after {
+  content: '';
+  animation: scanDots 1.5s steps(1) infinite;
+}
+
+/* ---- FILE TOO LARGE MODAL ---- */
+.size-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.size-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.size-modal-card {
+  transform: scale(0.92);
+  transition: transform 0.3s ease;
+}
+.size-modal-overlay.active .size-modal-card {
+  transform: scale(1);
+}
+
+/* Broken cloud shake */
+@keyframes gentleShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+.broken-cloud-shake {
+  animation: gentleShake 2s ease-in-out infinite;
 }
