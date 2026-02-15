@@ -1,5 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
+from app.schemas.scan_response import ScanResponse, thread
 import os
 import uuid
 
@@ -63,12 +64,17 @@ async def scan_file(file: UploadFile = File(...)):
             content={"error": "Falha ao salvar o arquivo"}
         )
 
-    # ---------- resposta simulada ----------
-    result = {
-        "scan_id": str(uuid.uuid4()),
-        "filename": file.filename,
-        "infected": False,
-        "risk_level": "low"
-    }
-
-    return JSONResponse(content=result)
+    # ---------- resposta --------- #
+    
+    #Aqui básicamente vai criar um id em uuid. E vai informar o status do processo e depois a reposta.  
+    scan_id = str(uuid.uuid4()) 
+    response = scan_id,
+    filename=file.filename,
+    
+    status = "processing",
+    infected = False
+    risk_level = "none",
+    
+    thread = []
+    
+    return response
