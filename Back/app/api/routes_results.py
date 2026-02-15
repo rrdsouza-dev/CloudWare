@@ -1,0 +1,1 @@
+#Rotas para consultar resultados e históricos
