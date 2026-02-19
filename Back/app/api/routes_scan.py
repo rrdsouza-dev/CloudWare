@@ -1,8 +1,12 @@
-from fastapi import APIRouter, UploadFile, File
+from nt import error
+from fastapi import APIRouter, UploadFile, File, status
 from fastapi.responses import JSONResponse
 import os
 import uuid
 import json
+
+from pydantic import Json
+from starlette.responses import Content
 
 router = APIRouter()
 
@@ -70,5 +74,25 @@ async def scan_file(file: UploadFile = File(...)):
     with open(result_file, "w") as f:
         json.dump(result, f, indent=4)
 
-    # responde ao usuário
+    # responde ao usuário ' ""
     return JSONResponse(content=result)
+
+
+
+@router.get("/resuts{scan_id}")
+async def get_scan_result(scan_id: str):
+    
+ result_file = f"{RESULTS_DIR}/{scan_id}.json"
+ 
+ if not os.path.exists:
+     return JSONResponse(
+         status_code=404,
+         content={"error": "Arquivo não encontrado"}
+     )
+     
+     
+ with open(result_file,"r") as f:
+     data = Json.load(f)
+     
+     
+ return JSONResponse(content=data)         
