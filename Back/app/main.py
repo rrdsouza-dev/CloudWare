@@ -1,21 +1,27 @@
+# app/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+# importando routers
 from app.api.routes_scan import router as scan_router
-import os  # biblioteca do próprio Python para lidar com arquivos e pastas
+from app.api.routes_results import router as results_router
 
-app = FastAPI()
-# se não existir, ele cria automaticamente ao iniciar o servidor
-os.makedirs("uploads", exist_ok=True)
-
-# --- configuração de CORS ---
-origins = ["*"]  # depois, em produção, você troca pelo domínio do seu site
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,        # quem pode acessar
-    allow_credentials=True,       # permite cookies/token
-    allow_methods=["*"],          # quais métodos HTTP (GET, POST...)
-    allow_headers=["*"],          # quais headers são permitidos
+# cria a instância do FastAPI
+app = FastAPI(
+    title="CloudWare API",
+    description="API para upload e scan de arquivos com integração VirusTotal/Hybrid Analysis",
+    version="1.0.0"
 )
 
-app.include_router(scan_router)
+# Configuração de CORS (se precisar acessar de frontend externo)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # em produção, especifique o domínio do front
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# registra routers
+app.include_router(scan_router, prefix="/scan", tags=["Scan"])
+app.include_router(results_router, prefix="/results", tags=["Results"])
