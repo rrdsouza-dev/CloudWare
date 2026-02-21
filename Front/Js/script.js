@@ -130,12 +130,28 @@ fileInput.addEventListener('change', () => {
   if (file) handleFileSelected(file);
 });
 
+// ---- API ----
+const API_BASE = ''; // mesma origem quando servido pelo backend
+
+async function scanFile(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_BASE}/scan/scan`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || `Erro ${res.status}`);
+  }
+  return res.json();
+}
+
 // ---- Processing Overlay ----
 function showProcessing() {
   scanProgress.style.width = '0%';
   processingOverlay.classList.add('active');
 
-  // Animate progress bar
   let progress = 0;
   const interval = setInterval(() => {
     progress += Math.random() * 12 + 3;
@@ -145,17 +161,16 @@ function showProcessing() {
     }
     scanProgress.style.width = progress + '%';
   }, 300);
+  return interval;
+}
 
-  // Complete after ~4 seconds
+function finishProcessing(interval, success) {
+  clearInterval(interval);
+  scanProgress.style.width = '100%';
   setTimeout(() => {
-    clearInterval(interval);
-    scanProgress.style.width = '100%';
-
-    setTimeout(() => {
-      hideProcessing();
-      showComplete();
-    }, 500);
-  }, 4000);
+    hideProcessing();
+    if (success) showComplete();
+  }, 500);
 }
 
 function hideProcessing() {
@@ -182,7 +197,7 @@ function showComplete() {
 }
 
 // ---- Submit Button ----
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', async () => {
   const file = fileInput.files[0];
   if (!file) {
     submitBtn.style.outline = '2px solid rgba(235,235,235,0.2)';
@@ -193,7 +208,15 @@ submitBtn.addEventListener('click', () => {
     return;
   }
 
-  showProcessing();
+  const interval = showProcessing();
+  try {
+    await scanFile(file);
+    finishProcessing(interval, true);
+  } catch (err) {
+    clearInterval(interval);
+    hideProcessing();
+    alert(err.message || 'Erro ao analisar o arquivo.');
+  }
 });
 
 // ---- Escape key closes modals ----

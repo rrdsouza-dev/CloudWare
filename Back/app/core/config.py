@@ -1,9 +1,11 @@
 
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Carrega variáveis de ambiente
-load_dotenv()
+# Carrega variáveis de ambiente (projeto raiz = pasta acima de Back/)
+_env_path = Path(__file__).resolve().parent.parent.parent.parent / ".env"
+load_dotenv(_env_path)
 
 # VirusTotal API Key
 VT_API_KEY = os.getenv("VT_API_KEY")
