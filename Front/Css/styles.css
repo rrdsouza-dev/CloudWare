@@ -178,3 +178,11 @@ body {
 .broken-cloud-shake {
   animation: gentleShake 2s ease-in-out infinite;
 }
+
+/* Result card (resposta do scan) */
+.result-card {
+  transition: opacity 0.3s ease;
+}
+.result-card.hidden {
+  display: none !important;
+}

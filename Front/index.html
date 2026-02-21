@@ -7,25 +7,18 @@
   <title>Cloud Ware - Cybersecurity Platform</title>
   <meta name="description" content="Advanced cybersecurity platform for file analysis and malware detection." />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
-          },
+          fontFamily: { sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'] },
           colors: {
             background: '#000000',
             foreground: '#ebebeb',
@@ -41,70 +34,63 @@
             'accent-foreground': '#ebebeb',
             border: '#262626',
           },
-          borderRadius: {
-            xl: '0.75rem',
-            lg: '0.5rem',
-          },
+          borderRadius: { xl: '0.75rem', lg: '0.5rem' },
         },
       },
     }
   </script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="Css/styles.css" />
 </head>
 <body>
   <div class="min-h-screen bg-background">
 
-    <!-- ============ NAVBAR ============ -->
-    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-xl" style="border-color: rgba(38,38,38,0.4);">
+    <!-- ============ NAVBAR (igual às fotos) ============ -->
+    <header class="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-xl" style="border-color: rgba(38,38,38,0.4);">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-4">
-        <!-- Logo - responsive sizing -->
-        <a href="#" class="flex items-center gap-2 sm:gap-2.5 no-underline">
-          <i data-lucide="shield" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" style="stroke-width:1.5; color: #b0b0b0;"></i>
+        <a href="#" class="flex items-center gap-2 no-underline">
+          <i data-lucide="cloud" class="w-6 h-6 md:w-7 md:h-7" style="stroke-width:1.5; color: #b0b0b0;"></i>
           <span class="text-base sm:text-lg md:text-xl font-bold tracking-tight text-foreground">Cloud Ware</span>
         </a>
 
-        <!-- Desktop Nav -->
         <ul class="hidden md:flex items-center gap-8 list-none m-0 p-0">
-          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Docs</a></li>
-          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Contato</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline hover:text-muted-foreground transition-colors">Produto</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline hover:text-muted-foreground transition-colors">Recursos</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline hover:text-muted-foreground transition-colors">Docs</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline hover:text-muted-foreground transition-colors">Contato</a></li>
         </ul>
 
-        <!-- Mobile Toggle -->
-        <button id="mobileToggle" type="button" class="text-foreground md:hidden bg-transparent border-none cursor-pointer p-0" aria-label="Abrir menu">
-          <i data-lucide="menu" class="w-5 h-5 sm:w-6 sm:h-6" id="menuIcon"></i>
-        </button>
+        <div class="flex items-center gap-4">
+          <a href="#" class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground no-underline hover:opacity-90 transition-opacity border border-transparent">Sign In</a>
+          <button id="mobileToggle" type="button" class="md:hidden text-foreground bg-transparent border-none cursor-pointer p-0" aria-label="Abrir menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
       </nav>
 
-      <!-- Mobile Menu -->
       <div id="mobileMenu" class="mobile-menu md:hidden border-t bg-background/95 backdrop-blur-xl px-6" style="border-color: rgba(38,38,38,0.4);">
         <ul class="flex flex-col gap-4 list-none m-0 p-0 py-6">
-          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Docs</a></li>
-          <li><a href="#" class="text-sm text-muted-foreground no-underline hover:text-foreground transition-colors">Contato</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline">Produto</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline">Recursos</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline">Docs</a></li>
+          <li><a href="#" class="text-sm text-foreground no-underline">Contato</a></li>
+          <li><a href="#" class="text-sm no-underline rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground w-fit">Sign In</a></li>
         </ul>
       </div>
     </header>
 
     <main>
-      <!-- ============ HERO SECTION ============ -->
+      <!-- ============ SEÇÃO 1: UPLOAD (primeira foto) ============ -->
       <section class="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20">
-
-        <!-- Cloud Watermark -->
         <div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden cloud-watermark">
           <i data-lucide="cloud" class="w-[420px] h-[420px] md:w-[600px] md:h-[600px]" style="stroke-width:0.5; color: #b0b0b0;"></i>
         </div>
 
-        <!-- Content -->
         <div class="relative z-10 flex w-full max-w-2xl flex-col items-center gap-8">
-
-          <!-- Badge -->
           <div class="flex items-center gap-2 rounded-full border px-4 py-1.5 bg-secondary" style="border-color: rgba(38,38,38,0.5);">
             <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
             <span class="text-xs font-medium text-muted-foreground">Sistema operacional</span>
           </div>
 
-          <!-- Heading -->
           <h1 class="text-balance text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-foreground">
             O que você deseja verificar hoje?
           </h1>
@@ -113,22 +99,17 @@
             Envie qualquer arquivo para análise avançada de ameaças. Detecção de malware em segundos com inteligência artificial.
           </p>
 
-          <!-- Upload Area -->
           <div id="uploadArea" class="upload-area group relative w-full cursor-pointer rounded-xl border bg-card transition-all" style="border-color: rgba(38,38,38,0.5);">
-            <label id="uploadLabel" class="flex cursor-pointer flex-col items-center gap-4 px-6 py-10 md:py-12">
+            <label class="flex cursor-pointer flex-col items-center gap-4 px-6 py-10 md:py-12">
               <input type="file" class="sr-only" id="fileInput" aria-label="Upload de arquivo para análise" />
-
               <div id="uploadIconBox" class="flex h-14 w-14 items-center justify-center rounded-xl border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
-                <i data-lucide="upload" class="w-6 h-6 text-muted-foreground" style="stroke-width:1.5;" id="uploadIcon"></i>
+                <i data-lucide="upload" class="w-6 h-6 text-muted-foreground" style="stroke-width:1.5;"></i>
               </div>
-
               <div class="flex flex-col items-center gap-1" id="uploadText">
                 <p class="text-sm font-medium text-foreground m-0">Arraste um arquivo ou clique para selecionar</p>
                 <p class="text-xs text-muted-foreground m-0">Suporta .exe, .dll, .pdf, .doc e outros formatos</p>
               </div>
             </label>
-
-            <!-- Submit Button -->
             <div class="border-t px-6 py-4" style="border-color: rgba(38,38,38,0.3);">
               <button id="submitBtn" type="button" class="btn-submit flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 border-none cursor-pointer font-[inherit]">
                 Enviar para análise
@@ -137,13 +118,24 @@
             </div>
           </div>
 
+          <!-- Card de resposta do scan (exibido após análise) -->
+          <div id="resultCard" class="result-card hidden w-full max-w-2xl rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.5);">
+            <div class="flex items-start gap-4">
+              <div id="resultIconBox" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-secondary" style="border-color: rgba(38,38,38,0.5);">
+                <i id="resultIcon" data-lucide="shield-check" class="w-6 h-6 text-emerald-500" style="stroke-width:1.5;"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 id="resultTitle" class="text-lg font-semibold text-foreground m-0 mb-1">Análise concluída</h3>
+                <p id="resultSubtitle" class="text-sm text-muted-foreground m-0 mb-3">Arquivo analisado com sucesso.</p>
+                <div id="resultDetails" class="text-sm text-muted-foreground space-y-1"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- ============ MALWARE CARDS ============ -->
+      <!-- ============ SEÇÃO 2: AMEAÇAS (segunda foto - rolar para baixo) ============ -->
       <section class="mx-auto w-full max-w-7xl px-6 py-24">
-
-        <!-- Section Header -->
         <div class="mb-12 flex flex-col items-center gap-3">
           <h2 class="text-balance text-center text-2xl md:text-3xl font-bold tracking-tight text-foreground">
             Ameaças que detectamos
@@ -153,10 +145,7 @@
           </p>
         </div>
 
-        <!-- Cards Grid -->
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="threatGrid">
-
-          <!-- Trojan -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -168,8 +157,6 @@
               </div>
             </div>
           </article>
-
-          <!-- Spyware -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -181,8 +168,6 @@
               </div>
             </div>
           </article>
-
-          <!-- Ransomware -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -194,8 +179,6 @@
               </div>
             </div>
           </article>
-
-          <!-- Rootkit -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -207,8 +190,6 @@
               </div>
             </div>
           </article>
-
-          <!-- Worm -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -220,8 +201,6 @@
               </div>
             </div>
           </article>
-
-          <!-- Adware -->
           <article class="threat-card rounded-xl border p-6 bg-card" style="border-color: rgba(38,38,38,0.4);">
             <div class="flex flex-col gap-4">
               <div class="card-icon-box flex h-11 w-11 items-center justify-center rounded-lg border bg-secondary transition-colors" style="border-color: rgba(38,38,38,0.5);">
@@ -233,96 +212,70 @@
               </div>
             </div>
           </article>
-
         </div>
       </section>
     </main>
 
-    <!-- ============ FOOTER ============ -->
+    <!-- ============ FOOTER (igual à segunda foto) ============ -->
     <footer class="border-t" style="border-color: rgba(38,38,38,0.3);">
       <div class="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-8 md:flex-row md:justify-between">
         <div class="flex items-center gap-2">
-          <i data-lucide="shield" class="w-4 h-4" style="stroke-width:1.5; color: #b0b0b0;"></i>
-          <span class="text-xs text-muted-foreground">Cloud Ware &mdash; Cybersecurity Platform</span>
+          <i data-lucide="cloud" class="w-4 h-4" style="stroke-width:1.5; color: #b0b0b0;"></i>
+          <span class="text-xs text-muted-foreground">Cloud Ware – Cybersecurity Platform</span>
         </div>
         <p class="text-xs text-muted-foreground m-0" id="copyright"></p>
       </div>
     </footer>
-
   </div>
 
   <!-- ============ PROCESSING OVERLAY ============ -->
   <div id="processingOverlay" class="processing-overlay">
     <div class="flex flex-col items-center gap-6">
-
-      <!-- Cloud + Wind Animation Container -->
       <div class="relative" style="width: 140px; height: 120px;">
-        <!-- Wind streaks -->
         <div class="wind-streak-1 absolute" style="top: 36px; left: -10px; width: 32px; height: 2px; background: rgba(255,255,255,0.25); border-radius: 2px;"></div>
         <div class="wind-streak-2 absolute" style="top: 52px; left: -18px; width: 24px; height: 2px; background: rgba(255,255,255,0.18); border-radius: 2px;"></div>
         <div class="wind-streak-3 absolute" style="top: 68px; left: -6px; width: 28px; height: 2px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
-
-        <!-- Floating cloud icon -->
         <div class="cloud-float flex items-center justify-center w-full h-full">
           <i data-lucide="cloud" class="text-white" style="width: 80px; height: 80px; stroke-width: 1;"></i>
         </div>
-
-        <!-- More wind streaks on right -->
         <div class="wind-streak-1 absolute" style="top: 40px; right: -14px; width: 28px; height: 2px; background: rgba(255,255,255,0.2); border-radius: 2px; animation-delay: 0.3s;"></div>
         <div class="wind-streak-2 absolute" style="top: 58px; right: -8px; width: 20px; height: 2px; background: rgba(255,255,255,0.15); border-radius: 2px; animation-delay: 0.7s;"></div>
       </div>
-
-      <!-- Text -->
       <div class="flex flex-col items-center gap-2">
-        <p class="text-base font-semibold text-white m-0 tracking-wide">
-          <span class="scan-dots">Vasculhando</span>
-        </p>
+        <p class="text-base font-semibold text-white m-0 tracking-wide"><span class="scan-dots">Vasculhando</span></p>
         <p class="text-xs text-muted-foreground m-0">Analisando o arquivo em busca de ameaças</p>
       </div>
-
-      <!-- Subtle progress bar -->
       <div class="w-48 h-0.5 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.08);">
         <div id="scanProgress" class="h-full rounded-full transition-all" style="width: 0%; background: rgba(255,255,255,0.35);"></div>
       </div>
     </div>
   </div>
 
-  <!-- ============ FILE TOO LARGE MODAL ============ -->
+  <!-- ============ MODAL ARQUIVO MUITO GRANDE ============ -->
   <div id="sizeModalOverlay" class="size-modal-overlay">
     <div class="size-modal-card relative flex flex-col items-center gap-6 rounded-2xl border p-8 sm:p-10 bg-card" style="border-color: rgba(38,38,38,0.5); max-width: 380px; width: calc(100% - 40px);">
-
-      <!-- Close button -->
-      <button id="sizeModalClose" type="button" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-lg bg-transparent border cursor-pointer transition-colors hover:bg-accent" style="border-color: rgba(38,38,38,0.5);" aria-label="Fechar aviso">
+      <button id="sizeModalClose" type="button" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-lg bg-transparent border cursor-pointer transition-colors hover:bg-accent" style="border-color: rgba(38,38,38,0.5);" aria-label="Fechar">
         <i data-lucide="x" class="w-4 h-4 text-muted-foreground" style="stroke-width:2;"></i>
       </button>
-
-      <!-- Broken cloud icon -->
       <div class="broken-cloud-shake flex items-center justify-center w-20 h-20 rounded-2xl border bg-secondary" style="border-color: rgba(38,38,38,0.5);">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8c8c8c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Cloud body -->
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-          <!-- Crack/break lines -->
           <line x1="10" y1="11" x2="8" y2="15" style="stroke: #ff4444; stroke-width: 1.5;" />
           <line x1="8" y1="15" x2="10" y2="17" style="stroke: #ff4444; stroke-width: 1.5;" />
           <line x1="14" y1="10" x2="15" y2="14" style="stroke: #ff4444; stroke-width: 1.5;" />
           <line x1="15" y1="14" x2="13" y2="16" style="stroke: #ff4444; stroke-width: 1.5;" />
         </svg>
       </div>
-
-      <!-- Text -->
       <div class="flex flex-col items-center gap-2 text-center">
         <h3 class="text-base font-bold text-foreground m-0">Arquivo muito pesado</h3>
-        <p class="text-sm leading-relaxed text-muted-foreground m-0">O arquivo excede o limite máximo de 100 MB. Por favor, selecione um arquivo menor para análise.</p>
+        <p class="text-sm leading-relaxed text-muted-foreground m-0">O arquivo excede o limite máximo de 100 MB. Selecione um arquivo menor.</p>
       </div>
-
-      <!-- Action button -->
       <button id="sizeModalBtn" type="button" class="flex w-full items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-accent bg-transparent cursor-pointer font-[inherit]" style="border-color: rgba(38,38,38,0.6);">
         Selecionar outro arquivo
       </button>
     </div>
   </div>
 
-  <!-- Custom JavaScript -->
   <script src="Js/script.js"></script>
 </body>
 </html>
