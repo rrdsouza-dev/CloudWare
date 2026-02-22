@@ -1,0 +1,16 @@
+{
+    "scan_id": "4e44c2e6-0a7d-42a2-a504-2efeaffc3bbc",
+    "filename": "teste.txt",
+    "status": "done",
+    "infected": false,
+    "risk_level": "low",
+    "details": {
+        "data": {
+            "type": "analysis",
+            "id": "NmE1MTI3NzYxNzk5MjIwNzk3NDYxNjUwYmVkNmY3MGQ6MTc3MTcwNDM1Nw==",
+            "links": {
+                "self": "https://www.virustotal.com/api/v3/analyses/NmE1MTI3NzYxNzk5MjIwNzk3NDYxNjUwYmVkNmY3MGQ6MTc3MTcwNDM1Nw=="
+            }
+        }
+    }
+}
