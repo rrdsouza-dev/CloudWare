@@ -1,7 +1,9 @@
 fastapi
-uvicorn
+uvicorn[standard]
 python-multipart
-requests
-python-dotenv
 aiofiles
-asyncio
+httpx
+python-dotenv
+pydantic-settings
+python-jose
+passlib[bcrypt]
