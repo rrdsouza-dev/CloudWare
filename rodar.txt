@@ -1,0 +1,11 @@
+Abrir API
+
+-uvicorn main:app --reload
+
+Abrir Front
+
+-pnpm dev
+
+Adicionar mais coisas ou mudar
+
+-pnpm install
