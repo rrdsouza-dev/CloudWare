@@ -1,12 +1,13 @@
-# app/main.py
 from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from app.api.routes_results import router as results_router
+
 # importando routers
 from app.api.routes_scan import router as scan_router
-from app.api.routes_results import router as results_router
 
 # diretório do frontend (Front/ na raiz do projeto)
 FRONT_DIR = Path(__file__).resolve().parent.parent.parent / "Front"
@@ -15,7 +16,7 @@ FRONT_DIR = Path(__file__).resolve().parent.parent.parent / "Front"
 app = FastAPI(
     title="CloudWare API",
     description="API para upload e scan de arquivos com integração VirusTotal/Hybrid Analysis",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Configuração de CORS (se precisar acessar de frontend externo)

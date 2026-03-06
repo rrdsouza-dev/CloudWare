@@ -1,10 +1,10 @@
-Abrir API
+Abrir API dentro da pasta back
 
 -uvicorn main:app --reload
 
 Abrir Front
 
--pnpm dev
+-pnpm dev -- -p 3000 #forçar a porta abrir
 
 Adicionar mais coisas ou mudar
 
